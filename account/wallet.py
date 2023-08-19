@@ -5,21 +5,24 @@ from pydantic import ValidationError
 from account.accountdetails import CustomerAccount, Transactions, TransType, TransMethod
 from config.db import customerAccount, customerTransaction
 from twilio.rest import Client
+from decouple import config
 import pywhatkit
 from schemas.schemas import serializeDict, serializeList
 from responses.response import ResponseData
 
 
 
-account_sid = 'AC5dce38e2b4defdeac6382292d7c44b1e'
-auth_token = 'b9f7522fcf9c0bb1dd551750bf8c75eb'
+account_sid = config('accountsid')
+auth_token = config('authtoken')
+emailId = config('emailId')
+password = config('password')
 client = Client(account_sid, auth_token)
 
 
 def send_email(message: str, receipent: str) -> bool:
     return pywhatkit.send_mail(
-        "faymoshope@gmail.com",
-        "chiamaka2018",
+        emailId,
+        password,
         "Account Creation Notification",
         message, 
         receipent

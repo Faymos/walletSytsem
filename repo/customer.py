@@ -35,8 +35,7 @@ def GetCustomerByID(id: str) -> ResponseData:
             
     except Exception as e:
         return ResponseData("404","Error Fetching", " No customer found")
-    
-    
+     
     
 def GetCustomerByEmail(email: str) -> ResponseData:
     try:
@@ -59,9 +58,6 @@ def GetCustomerByusername(username: str) -> ResponseData:
     except Exception as e:
         return ResponseData("404","Fetching Fail", "User not found")
     
-
-
-
 
 def createcustomer(request: Customer) -> ResponseData:
     try:
@@ -107,8 +103,7 @@ def updatecustomer(id: str, request: Customer) -> ResponseData:
         return ResponseData("200","Successful", serializeDict(customertables.find_one({"_id":  ObjectId(id)})))     
     except Exception as e:
          return ResponseData("500","Fail", "failed to update customer")
-    
-    
+        
 def deleteuser(id: str) -> ResponseData:
     try:
         return ResponseData("200","Successful", customertables.find_one_and_delete({"_id": ObjectId(id)}))

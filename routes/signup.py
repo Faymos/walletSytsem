@@ -13,5 +13,6 @@ async def user_signup(request: User):
 
 @users.post('/api/signin')
 async def user_signin(request: LoginModel):
+    print(request)
     return signuprepo.UserLogin(request)         
  
