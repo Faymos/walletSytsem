@@ -1,4 +1,4 @@
-from fastapi import Request, HTTPException, Depends
+from fastapi import Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from .auth import decodeJWT
 from responses.response import ResponseData

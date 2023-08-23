@@ -68,14 +68,13 @@ def create_account(new_account: CustomerAccount, email: str) -> bool:
 def update_account(id: str, update_data: dict):
     try:
         update_dict = update_data.dict(exclude_unset=True)
-        result = customerAccount.update_one({"_id": id}, {"$set": update_dict})
+        result = customerAccount.find_one_and_update({"_id": id}, {"$set": update_dict})
         if result.modified_count == 1:
             return("Account updated successfully.")
         else:
             return(f"Error funding your account.")
     except Exception as e:
         return(f"Error: {e}")
-
 
 def transactions(transactions: Transactions):
     try:
@@ -87,8 +86,6 @@ def transactions(transactions: Transactions):
         return(f"Error: Invalid data - {e}")
     except Exception as e:
         return(f"Error: {e}")
-
-
 
 class BalanceException(Exception):
     pass
